@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free all-in-one browser file converter. Convert PNG, JPG, WebP, BMP, Images to PDF, and CSV to JSON locally with zero uploads." />
+  <title>Free All-in-One Browser File Converter (Image, PDF, CSV, JSON)</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <button type="button" class="nav-link active" data-tab="imageTab">Image Converter</button>
+    <button type="button" class="nav-link" data-tab="pdfTab">Images to PDF</button>
+    <button type="button" class="nav-link" data-tab="dataTab">CSV ↔ JSON</button>
+  </nav>
+
+  <div class="page-wrap">
+    <!-- Top Banner Ad Slot (Paste Adsterra/Monetag code here later) -->
+    <div class="ad-slot" id="ad-top">Ad Space (728x90 / Responsive)</div>
+
+    <!-- TOOL 1: IMAGE CONVERTER -->
+    <main class="converter-box tab-panel active" id="imageTab">
+      <h1>Image Converter</h1>
+      <p class="subtitle">Convert PNG, JPG, WebP, and BMP locally in your browser. Files never leave your device.</p>
+
+      <label for="fileInput" class="drop-zone" id="dropZone">
+        <span id="fileLabel">Click to choose an image or drag &amp; drop it here</span>
+        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/bmp" hidden />
+      </label>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="formatSelect">Convert To</label>
+          <select id="formatSelect">
+            <option value="image/png">PNG (.png)</option>
+            <option value="image/jpeg" selected>JPG / JPEG (.jpg)</option>
+            <option value="image/webp">WebP (.webp)</option>
+            <option value="image/bmp">BMP (.bmp)</option>
+          </select>
+        </div>
+
+        <div class="control-group" id="qualityGroup">
+          <label for="qualityRange">Quality: <span id="qualityValue">90</span>%</label>
+          <input type="range" id="qualityRange" min="10" max="100" value="90" />
+        </div>
+      </div>
+
+      <button type="button" id="convertBtn" class="btn-primary" disabled>Convert &amp; Download</button>
+      <p id="statusMsg" class="status-msg"></p>
+    </main>
+
+    <!-- TOOL 2: IMAGES TO PDF -->
+    <main class="converter-box tab-panel" id="pdfTab">
+      <h1>Images to PDF Converter</h1>
+      <p class="subtitle">Combine one or multiple PNG/JPG/WebP images into a single PDF document locally.</p>
+
+      <label for="pdfFileInput" class="drop-zone" id="pdfDropZone">
+        <span id="pdfFileLabel">Click or drag &amp; drop one or more images here</span>
+        <input type="file" id="pdfFileInput" accept="image/png,image/jpeg,image/webp" multiple hidden />
+      </label>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="orientationSelect">Page Orientation</label>
+          <select id="orientationSelect">
+            <option value="p" selected>Portrait (Vertical)</option>
+            <option value="l">Landscape (Horizontal)</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" id="makePdfBtn" class="btn-primary" disabled>Create &amp; Download PDF</button>
+      <p id="pdfStatusMsg" class="status-msg"></p>
+    </main>
+
+    <!-- TOOL 3: CSV <-> JSON CONVERTER -->
+    <main class="converter-box tab-panel" id="dataTab">
+      <h1>CSV ↔ JSON Converter</h1>
+      <p class="subtitle">Upload a .csv/.json file or paste text below to convert and download instantly.</p>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="dataMode">Conversion Mode</label>
+          <select id="dataMode">
+            <option value="csv-to-json" selected>CSV to JSON (.json)</option>
+            <option value="json-to-csv">JSON to CSV (.csv)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="dataFileInput">Upload .csv or .json File (Optional)</label>
+          <input type="file" id="dataFileInput" accept=".csv,.json,text/csv,application/json" />
+        </div>
+
+        <div class="control-group">
+          <label for="inputText">Input Data</label>
+          <textarea id="inputText" placeholder="Paste your CSV or JSON here..."></textarea>
+        </div>
+      </div>
+
+      <button type="button" id="convertDataBtn" class="btn-primary">Convert &amp; Download</button>
+      <p id="dataStatusMsg" class="status-msg"></p>
+    </main>
+
+    <!-- Bottom Banner Ad Slot -->
+    <div class="ad-slot" id="ad-bottom">Ad Space (Responsive)</div>
+
+    <section class="seo-info">
+      <h2>100% Private Browser-Based File Converter</h2>
+      <p>Convert images between PNG, JPEG, WebP, and BMP, merge multiple photos into an A4 PDF, or transform CSV spreadsheets into JSON data directly on your device without uploading files to any server.</p>
+    </section>
+  </div>
+
+  <canvas id="workCanvas" hidden></canvas>
+  <script src="app.js"></script>
+</body>
+</html>
